@@ -1,0 +1,90 @@
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  background-color: #FFFF;
+  padding: 5px;
+  flex-wrap: wrap; 
+}
+
+.filter-item {
+  position: relative;
+  width: 200px; 
+}
+
+.custom-select {
+  position: relative;
+}
+
+.filter-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #828181;
+  pointer-events: none;
+}
+
+.filters select {
+  padding-top: 5%;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 14px;
+  appearance: none;
+  background-color: white;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16%22%3E%3Cpath d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"%3E%3C/path%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    margin-left: 5px;
+    gap: 5px;
+  }
+
+  .filter-item {
+    width: 50%; 
+    margin-bottom: 10px; 
+  }
+
+  .filters select {
+    font-size: 12px; 
+    padding-top: 2%;
+  }
+
+  .filter-icon {
+    font-size: 16px; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .filters {
+    padding: 10px;
+    flex-direction: column; 
+  }
+
+  .filter-item {
+    width: 50%; 
+    margin-bottom: 10px; 
+  }
+
+  .filters select {
+    font-size: 14px; 
+    padding-left: 25px;
+    padding-top: 2%;
+  }
+
+  .filter-icon {
+    font-size: 14px;
+    
+  }
+}

@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title-section {
+  flex: 1;
+}
+
+.profile {
+  position: relative; 
+  text-align: start;
+}
+
+input {
+  padding: 8px 30px 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-left: 30px; 
+  background-color: #f7f4f4;
+}
+
+.profile i {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%); 
+  color: #a5a1a1;
+}

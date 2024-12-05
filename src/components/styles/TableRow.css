@@ -1,0 +1,238 @@
+.table-row .status {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.table-row .status.active {
+  color: green;
+  background-color: #ccf1ce; 
+}
+
+.table-row .status.inactive {
+  color: #515050;
+  background-color:#c9c7c7; 
+}
+
+.table-row td i {
+  font-size: 18px; 
+  color: #888;     
+  cursor: pointer; 
+}
+
+.camera-checkbox {
+  margin-right: 10px; 
+  cursor: pointer;   
+}
+
+.health-column .health-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+}
+
+
+.circle-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Space between the icon and the circle */
+}
+
+
+.good-status-icon {
+  color: #4caf50; 
+}
+
+.warning-status-icon {
+  color: #ff9800; 
+}
+
+.critical-status-icon {
+  color: #f44336; 
+}
+
+.cloud-icon {
+  color: #007bff; 
+  font-size: 16px; 
+}
+
+.vector-icon {
+  color: #ff9800; 
+  width: 16px;
+  height: 16px;
+}
+
+.circle-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ccc; 
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  color: #555; 
+  background-color: #fff; 
+}
+
+
+@media (max-width: 768px) {
+  .table-row .status {
+    font-size: 12px; 
+    padding: 5px 8px; 
+  }
+
+  .table-row td i {
+    font-size: 16px;
+  }
+
+  .camera-checkbox {
+    margin-right: 5px; 
+  }
+
+  .health-column .health-icons {
+    gap: 8px;
+  }
+
+  .circle-icon-container {
+    gap: 2px; 
+  }
+
+  .circle-icon {
+    width: 20px; 
+    height: 20px;
+    font-size: 10px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .table-row .status {
+    font-size: 12px; 
+    padding: 4px 6px; 
+  }
+
+  .table-row td i {
+    font-size: 14px; 
+  }
+
+  .camera-checkbox {
+    margin-right: 3px; 
+  }
+
+  .health-column .health-icons {
+    gap: 6px; 
+  }
+
+  .circle-icon-container {
+    gap: 2px; 
+
+  }
+  .camera-table {
+    font-size: 12px; 
+    display: block; 
+    overflow-x: auto;
+  }
+
+  .camera-table th,
+  .camera-table td {
+    display: block;
+    width: 100%; 
+  }
+}
+
+.recorder-text {
+  overflow: hidden;       
+  text-overflow: ellipsis; 
+  white-space: nowrap;     
+}
+
+.recorder-text-wrap {
+  word-wrap: break-word;   
+  overflow-wrap: break-word;
+}
+
+
+.health-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  overflow: hidden; 
+  padding: 10px;  
+  
+}
+
+.health-column .health-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  flex-wrap: wrap; 
+}
+
+.circle-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; 
+  margin-bottom: 5px; 
+}
+
+.circle-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid #ccc;  */
+  border-radius: 50%; 
+  font-size: 14px;  
+  font-weight: bold;
+  color: #555; 
+  /* background-color: #fff;  */
+  overflow: hidden; 
+}
+
+.good-status-icon,
+.warning-status-icon,
+.critical-status-icon {
+  font-size: 16px; 
+  margin: 0;
+}
+
+.health-column .health-icons .circle-icon {
+  min-width: 24px; 
+  min-height: 24px; 
+}
+
+@media (max-width: 768px) {
+  .health-column .health-icons {
+    gap: 8px; 
+  }
+
+  .circle-icon-container {
+    gap: 3px; 
+  }
+
+  .circle-icon {
+    width: 20px; 
+    height: 20px;
+    font-size: 12px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .health-column .health-icons {
+    gap: 6px; 
+  }
+
+  .circle-icon-container {
+    gap: 2px; 
+  }
+
+  .circle-icon {
+    width: 18px; 
+    height: 18px;
+    font-size: 10px; 
+  }
+}

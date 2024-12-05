@@ -1,0 +1,130 @@
+.camera-table {
+  width: 100%;
+  margin: 10px;
+  border-collapse: collapse;
+  background-color: #FFF;
+  table-layout: fixed;
+}
+
+.camera-table th,
+.camera-table td {
+  padding: 10px;
+  text-align: left;
+  border: none; 
+}
+
+.camera-table th {
+  background-color: #FFF;
+  font-weight: normal;
+  border-bottom: 1px solid #ddd; 
+}
+
+.camera-table tr {
+  border-bottom: 1px solid #ddd; 
+}
+
+.camera-table tr:last-child {
+  border-bottom: none; 
+}
+
+.camera-name-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4CAF50; 
+  margin-left: 5px;
+}
+
+.camera-name {
+  display: flex;
+  align-items: center;
+}
+
+.select-all-checkbox {
+  margin-right: 10px;  
+  cursor: pointer;
+}
+
+.table-row td i {
+  font-size: 18px;
+  color: #888;  
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .camera-table {
+    font-size: 14px; 
+    margin-left: 5px;
+  }
+
+  .camera-table th,
+  .camera-table td {
+    padding: 8px; 
+  }
+
+  .camera-name-box {
+    width: 8px;
+    height: 8px;
+  }
+
+  .camera-name {
+    flex-direction: row; 
+    font-size: 14px; 
+  }
+
+  .select-all-checkbox {
+    margin-right: 5px; 
+  }
+
+  .table-row td i {
+    font-size: 16px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .camera-table {
+    font-size: 12px; 
+    margin-left: 5px;
+  }
+
+  .camera-table th,
+  .camera-table td {
+    padding: 6px; 
+  }
+
+  .camera-name-box {
+    width: 6px; 
+    height: 6px;
+  }
+
+  .camera-name {
+    font-size: 12px; 
+    flex-direction: row; 
+  }
+
+  .select-all-checkbox {
+    margin-right: 3px; 
+  }
+
+  .table-row td i {
+    font-size: 14px; 
+  }
+
+  .camera-table {
+    display: block;
+    overflow-x: auto; 
+    white-space: nowrap; 
+  }
+
+  .camera-table th,
+  .camera-table td {
+    display: block; 
+    width: 100%; 
+  }
+
+  .camera-table td:nth-child(2), 
+  .camera-table th:nth-child(2) {
+    display: none;
+  }
+}
