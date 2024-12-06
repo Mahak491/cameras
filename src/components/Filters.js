@@ -28,6 +28,15 @@ const Filters = ({ onFilterChange }) => {
             <option value="Denver, CO">Denver, CO</option>
             <option value="New York, NY">New York, NY</option>
             <option value="Los Angeles, CA">Los Angeles, CA</option>
+            <option value="Miami, FL">Miami, FL</option>
+            <option value="Chicago, IL">Chicago, IL</option>
+            <option value="San Diego, CA">San Diego, CA</option>
+            <option value="San Francisco, CA">San Francisco, CA</option>
+            <option value="Philadelphia, PA">Philadelphia, PA </option>
+            <option value="Phoenix, AZ">Phoenix, AZ</option>
+            <option value="Houston, TX">Houston, TX</option>
+            <option value="Dallas, TX">Dallas, TX</option>
+            <option value="Atlanta, GA">Atlanta, GA</option>
           </select>
         </div>
       </div>

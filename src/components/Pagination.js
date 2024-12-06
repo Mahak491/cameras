@@ -1,38 +1,28 @@
 import React, { useState } from 'react';
 import './styles/Pagination.css';
 
-const Pagination = ({ totalItems, itemsPerPage, }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPageValue, setItemsPerPageValue] = useState(itemsPerPage || 10);
-
-  const totalPages = Math.ceil(totalItems / itemsPerPageValue);
+const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange, onItemsPerPageChange }) => {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
-      setCurrentPage(page);
-      // onPageChange(page, itemsPerPageValue);
+      onPageChange(page);
     }
   };
 
   const handleItemsPerPageChange = (e) => {
     const value = parseInt(e.target.value, 10);
-    setItemsPerPageValue(value);
-    setCurrentPage(1); 
-    // onPageChange(1, value);
+    onItemsPerPageChange(value);
   };
 
-  const startItem = (currentPage - 1) * itemsPerPageValue + 1;
-  const endItem = Math.min(startItem + itemsPerPageValue - 1, totalItems);
-
   return (
-    <div className="pagination-container" style={{color:"#828181"}}>
+    <div className="pagination-container" style={{ color: "#828181" }}>
       <div className="pagination-right">
         <div className="pagination-info">
           <select
-            value={itemsPerPageValue}
+            value={itemsPerPage}
             onChange={handleItemsPerPageChange}
             className="items-per-page-dropdown"
-            style={{color:"#828181"}}
           >
             <option value="5">5</option>
             <option value="10">10</option>
@@ -40,36 +30,21 @@ const Pagination = ({ totalItems, itemsPerPage, }) => {
             <option value="50">50</option>
           </select>
           <span>
-            {1}-{10} of {350}
+            {Math.min((currentPage - 1) * itemsPerPage + 1, totalItems)}-
+            {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
           </span>
         </div>
-        <div className="pagination-buttons" style={{color:"#828181"}}>
-          <button
-            onClick={() => handlePageChange(1)}
-            disabled={currentPage === 1}
-            className="pagination-button"
-          >
+        <div className="pagination-buttons">
+          <button onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
             &laquo;
           </button>
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="pagination-button"
-          >
+          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
             &lsaquo;
           </button>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="pagination-button"
-          >
+          <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
             &rsaquo;
           </button>
-          <button
-            onClick={() => handlePageChange(totalPages)}
-            disabled={currentPage === totalPages}
-            className="pagination-button"
-          >
+          <button onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages}>
             &raquo;
           </button>
         </div>

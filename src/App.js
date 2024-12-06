@@ -1,20 +1,20 @@
-import React from 'react';
-import Header from './components/Header';
-import Table from './components/Table';
-import "./components/styles/App.css"
-import Pagination from './components/Pagination';
+import React, { useState } from 'react';
+import Header from './components/Header.js';
+import Table from './components/Table.js';
 
-function App() {
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (term) => {
+    setSearchTerm(term); 
+  };
+
   return (
-    <div className="app-container">
-      <Header />
-      <div className="content">
-        
-        <Table />
-        <Pagination/>
-      </div>
+    <div>
+      <Header onSearch={handleSearch} />
+      <Table searchTerm={searchTerm} />
     </div>
   );
-}
+};
 
 export default App;

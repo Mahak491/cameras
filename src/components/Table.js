@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import TableRow from './TableRow';
 import Filters from './Filters';
+import Pagination from './Pagination';
 import './styles/Table.css';
 
-const Table = () => {
-  const [cameras, setCameras] = useState([]); 
+const Table = ({ searchTerm }) => {
+  const [cameras, setCameras] = useState([]);
   const [filteredCameras, setFilteredCameras] = useState([]);
-  const [filters, setFilters] = useState({ location: '', status: '' }); 
+  const [filters, setFilters] = useState({ location: '', status: '' });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const token = "4ApVMIn5sTxeW7GQ5VWeWiy"; 
+  const token = "4ApVMIn5sTxeW7GQ5VWeWiy";
 
   useEffect(() => {
     const getCameras = async () => {
@@ -20,29 +23,25 @@ const Table = () => {
             "Content-Type": "application/json",
           },
         });
-  
+
         if (!response.ok) {
           throw new Error("Failed to fetch cameras");
         }
-  
+
         const data = await response.json();
-        console.log("Fetched cameras:", data);
-  
+        console.log(data);
         if (data && data.data && Array.isArray(data.data)) {
           setCameras(data.data);
-          setFilteredCameras(data.data)
+          setFilteredCameras(data.data);
         } else {
-          console.error("Invalid data structure:", data);
           setCameras([]);
           setFilteredCameras([]);
         }
       } catch (error) {
         console.error("Error fetching cameras:", error);
-        setCameras([]);
-        setFilteredCameras([]);
       }
     };
-  
+
     getCameras();
   }, [token]);
 
@@ -50,43 +49,41 @@ const Table = () => {
     setFilters((prev) => ({ ...prev, [filterType]: value }));
   };
 
+
   useEffect(() => {
     let filtered = cameras;
 
     if (filters.location) {
-      filtered = filtered.filter((camera) => camera.location === filters.location);
+      filtered = filtered.filter((camera) =>
+        camera.location.toLowerCase() === filters.location.toLowerCase()
+      );
     }
 
     if (filters.status) {
       filtered = filtered.filter((camera) => camera.status === filters.status);
     }
 
-    setFilteredCameras(filtered);
-  }, [filters, cameras]);
-
-  const updateCameraStatus = async (id, status) => {
-    try {
-      const response = await fetch("https://api-app-staging.wobot.ai/app/v1/update/camera/status", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id,
-          status,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update camera status");
-      }
-
-      const result = await response.json();
-      console.log("Camera status updated:", result);
-    } catch (error) {
-      console.error("Error updating camera status:", error);
+    if (searchTerm) {
+      filtered = filtered.filter((camera) =>
+        camera.location.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
+
+    setFilteredCameras(filtered);
+    setCurrentPage(1); 
+  }, [filters, cameras, searchTerm]);
+
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedCameras = filteredCameras.slice(startIndex, startIndex + itemsPerPage);
+
+
+  const updateStatus = (id, newStatus) => {
+    setCameras((prevCameras) =>
+      prevCameras.map((camera) =>
+        camera._id === id ? { ...camera, status: newStatus } : camera
+      )
+    );
   };
 
   return (
@@ -108,15 +105,22 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(filteredCameras) && filteredCameras.length > 0 ? (
-            filteredCameras.map((camera) => (
-              <TableRow key={camera._id} {...camera} updateStatus={updateCameraStatus} />
+          {paginatedCameras.length > 0 ? (
+            paginatedCameras.map((camera) => (
+              <TableRow key={camera._id} {...camera} updateStatus={updateStatus} />
             ))
           ) : (
             <tr><td colSpan="7">No cameras available</td></tr>
           )}
         </tbody>
       </table>
+      <Pagination
+        totalItems={filteredCameras.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        onItemsPerPageChange={setItemsPerPage}
+      />
     </div>
   );
 };
