@@ -15,7 +15,7 @@ const Header = () => (
       </div>
       <div className="profile">
         <input type="text" placeholder="search" />
-        <i className="fas fa-search"></i> {/* FontAwesome search icon */}
+        <i className="fas fa-search"></i> 
       </div>
     </div>
   </>
